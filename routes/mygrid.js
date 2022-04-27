@@ -34,4 +34,36 @@ module.exports = (app)=>{
             res.send('Não foi possível gravar os dados no DB')
         })
     })
+
+    //listar o documento para o excluir
+    app.get('/mygrid_excluir', async(req,res)=>{
+        //recuperar o id da barra de endereço
+        var id=req.query.id
+        //procurar o documento específico
+        var procurar = await modelo.findOne({_id:id})
+        //abrir a view mygrid_excluir e enviar a json do documento
+        res.render('mygrid_excluir.ejs',{dados:procurar})
+    })
+
+    //listar o documento para o alterar
+    app.get('/mygrid_alterar', async(req,res)=>{
+        //recuperar o id da barra de endereço
+        var id=req.query.id
+        //procurar o documento específico
+        var procurar = await modelo.findOne({_id:id})
+        //abrir a view mygrid_alterar e enviar a json do documento
+        res.render('mygrid_alterar.ejs',{dados:procurar})
+    })
+
+    //excluir documento da coleção atual
+    app.get('/excluir_mygrid', async(req,res)=>{
+        //recuperando o id da barra de endereço 
+        var id = req.query.id 
+        //excluindo o documento da coleção (n tem confirmação, n tem como desfazer o delet)
+        var exluir = await modelo.findOneAndRemove({_id:id})
+        //voltar para a página mygrid
+        res.redirect('/mygrid')
+
+    })
+
 }
