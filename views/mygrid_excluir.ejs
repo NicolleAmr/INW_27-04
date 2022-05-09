@@ -21,13 +21,6 @@
                 <label for="texto">Texto:</label>
                 <textarea name="texto" id="texto" cols="30" rows="10" disabled> <%=dados.texto%> </textarea><br>
             </form>
-            <a href="/mygrid">
-                <button class="btn btn-outline-warning">Cancelar</button>
-            </a>
-
-            <a href="/excluir_mygrid?id=<%=dados._id%>">
-                <button class="btn btn-outline-danger">Excluir</button>
-            </a><br>
 
             <button onclick="window.location.href='/mygrid'" class="btn btn-outline-warning"> Cancelar </button>
             <button onclick="window.location.href='/excluir_mygrid?id=<%=dados._id%>'" class="btn btn-outline-danger"> Excluir </button>

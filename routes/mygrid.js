@@ -3,9 +3,8 @@ module.exports = (app)=>{
     var conexao = require('../config/database')
     //importar o modelo mygrid
     var modelo = require('../models/mygrid')
-    
     //abrir o formulário mygrid.ejs
-    app.get('/mygrid',(req,res)=>{
+    app.get('/mygrid',(req,res)=>{ //como fazia p ordenar os resultados
         //conectar com o database
         conexao()
         //buscar todos os documentos da colecao mygrid
@@ -67,8 +66,12 @@ module.exports = (app)=>{
         //recuperar as informações digitadas 
         var dados = req.body
          //alterando o documento da coleção (n tem confirmação, n tem como desfazer o delet)
-         var alterar = await modelo.findOneAndUpdate({_id:id}, {titulo:dados.titulo, texto:dados.texto})
-        //voltar para a página mygrid
+         var alterar = await modelo.findOneAndUpdate({_id:id},
+            {titulo:dados.titulo, 
+            texto:dados.texto})
+        //voltar para a página mygrid-
+
+        
         res.redirect('/mygrid')
     })
 }
